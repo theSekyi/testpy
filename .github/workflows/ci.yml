@@ -10,10 +10,9 @@ jobs:
         python-version: ['2.x', '3.x', 'pypy-2.7', 'pypy-3.6', 'pypy-3.7']
     name: Python ${{ matrix.python-version }} sample
     steps:
-      - users: actions/checkout@v2 # setup this repo on workflow
+      - uses: actions/checkout@v2 # setup this repo on workflow
       - name: Python Setup
         uses: actions/setup-python@v2
-
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
