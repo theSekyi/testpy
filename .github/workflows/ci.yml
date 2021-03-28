@@ -23,10 +23,9 @@ jobs:
           pip install black
           pip install -U scikit-learn
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Run linters
-        uses: wearerequired/lint-action@v1
-        with:
-          black: true
+      - name: Run linter
+        run: black --check
+
       # - name: Test with pytest
       #   run: |
       #     pytest
