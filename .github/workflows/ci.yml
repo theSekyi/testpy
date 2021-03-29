@@ -34,3 +34,12 @@ jobs:
         run: python script.py
       - name: Format Code
         run: black script.py
+      - name: Push changes
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git config --global user.name 'Emmanuel Sekyi'
+          git config --global user.email 'emmanuel-sekyi@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git checkout $GITHUB_HEAD_REF
+          git commit -am "Automated changes"
+          git push
