@@ -32,3 +32,5 @@ jobs:
           pytest test.py
       - name: Run Script
         run: python script.py
+      - name: Format Code
+        run: black script.py
