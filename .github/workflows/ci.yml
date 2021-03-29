@@ -24,8 +24,8 @@ jobs:
           pip install pytest
           pip install -U scikit-learn
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Run linter
-        run: black --check .
+      # - name: Run linter
+      #   run: black --check .
 
       - name: Test with pytest
         run: |
