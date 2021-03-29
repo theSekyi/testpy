@@ -9,7 +9,7 @@ def data_stats(data):
     labels = data.target_names
     df = pd.DataFrame(data, columns=labels)
 
-    return df.describe()
+    return df
 
 
 

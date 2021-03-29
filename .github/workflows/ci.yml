@@ -21,12 +21,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas
           pip install black
+          pip install pytest
           pip install -U scikit-learn
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run linter
-        run: black script.py
+        run: black --check .
 
-      # - name: Test with pytest
-      #   run: |
-      #     pytest
+      - name: Test with pytest
+        run: |
+          pytest
       - run: python script.py
