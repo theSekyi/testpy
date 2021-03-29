@@ -32,8 +32,15 @@ jobs:
           pytest test.py
       - name: Run Script
         run: python script.py
-      - name: Format Code
-        run: black script.py
+      # - name: Format Code
+      #   run: black script.py
+      - name: black
+        uses: lgeiger/black-action@v1.0.1
+        with:
+          args: .
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
       - name: Push changes
         if: steps.git-check.outputs.modified == 'true'
         run: |
