@@ -24,9 +24,6 @@ jobs:
           pip install pytest
           pip install -U scikit-learn
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      # - name: Run linter
-      #   run: black --check .
-
       - name: Test with pytest
         run: |
           pytest test.py
@@ -44,8 +41,8 @@ jobs:
       - name: Push changes
         if: steps.git-check.outputs.modified == 'true'
         run: |
-          git config --global user.name 'Emmanuel Sekyi'
-          git config --global user.email 'emmanuel-sekyi@users.noreply.github.com'
+          git config --global user.name $MY_USERNAME
+          git config --global user.email $MY_EMAIL
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git checkout $GITHUB_HEAD_REF
           git commit -am "Automated changes"
